@@ -10,7 +10,6 @@ namespace PhilipsCapstone.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string Title { get; set; }
 
         public string ImageLocation { get; set; }
@@ -21,6 +20,7 @@ namespace PhilipsCapstone.Models
         public DateTime CreateDateTime { get; set; }
 
         public string Category { get; set; }
+        public int Stars { get; set; }
 
         [Required]
         public int UserProfileId { get; set; }

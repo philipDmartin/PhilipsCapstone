@@ -33,6 +33,14 @@ export default function Header() {
             }
           </Nav> 
 
+          <Nav className="mr-auto" navbar>
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/userreviews">My Reviews</NavLink>
+              </NavItem>
+            }
+          </Nav>
+
           {/* <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <NavItem>

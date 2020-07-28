@@ -6,7 +6,7 @@ import { UserProfileProvider } from "./providers/UserProfileProvider";
 import ApplicationViews from "./components/ApplicationViews";
 
 import { ReviewProvider } from './providers/ReviewProvider';
-// import { UserReviewProvider } from './providers/UserReviewProvider';
+import { UserReviewProvider } from './providers/UserReviewProvider';
 import { UserTypeProvider } from './providers/UserTypeProvider.js';
 
 function App() {
@@ -15,10 +15,10 @@ function App() {
       <UserProfileProvider>
         <UserTypeProvider>
           <ReviewProvider>
-            {/* <UserReviewProvider> */}
+            <UserReviewProvider>
             <Header />
             <ApplicationViews />
-            {/* </UserReviewProvider> */}
+            </UserReviewProvider>
           </ReviewProvider>
         </UserTypeProvider>
       </UserProfileProvider>

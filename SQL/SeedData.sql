@@ -22,7 +22,6 @@ insert into FavoritePost (Id, Title, CreateDateTime, UserProfileId) values (1, '
 insert into FavoritePost (Id, Title, CreateDateTime, UserProfileId) values (2, 'Top5', '2019-12-04', 2);
 set identity_insert [FavoritePost] off
 
-
 set identity_insert [FavoriteMovies] on
 insert into FavoriteMovies (Id, FavoritePostId, ReviewId, Why) values (1, 1, 1, 'This is my fav Movie1');
 insert into FavoriteMovies (Id, FavoritePostId, ReviewId, Why) values (2, 2, 2, 'This is my fav Movie2');

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
 import { Link } from "react-router-dom"
-// import { format } from 'date-fns'
+import { format } from 'date-fns'
 
 export const Review = ({ review }) => {
     return (
@@ -16,7 +16,8 @@ export const Review = ({ review }) => {
                 <div className="reviewItems">
                     <p>Reviewed by: {review.userProfile.displayName}</p>
                     <p>Category: {review.category}</p>
-                    <p>Created: {(new Date(review.createDateTime), 'MM/dd/yyyy')}</p>
+                    <p>Stars: {review.stars}</p>
+                    <p>Created: {format(new Date(review.createDateTime), 'MM/dd/yyyy')}</p>
                 </div>
             </CardBody>
         </Card>
