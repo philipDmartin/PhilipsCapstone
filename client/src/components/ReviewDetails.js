@@ -1,14 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Card, CardImg, CardBody, Button } from "reactstrap";
-import { ListGroupItem } from 'reactstrap'
 import { ReviewContext } from '../providers/ReviewProvider'
 import { useParams, Link, useHistory } from 'react-router-dom'
-// import { CommentForm } from './CommentForm';
+import { CommentForm } from './CommentForm';
 import { format } from 'date-fns'
 
 const ReviewDetails = () => {
 const [review, setReview] = useState()
-//   const [commentInput, setInput] = useState(false)
+  const [commentInput, setInput] = useState(false)
   const { getReview } = useContext(ReviewContext);
   const { id } = useParams()
   const history = useHistory();
@@ -18,19 +17,15 @@ const [review, setReview] = useState()
     getReview(id).then(setReview)
   }, [])
 
-//   const displayInput = () => {
-//     if (commentInput === true) {
-//       return <CommentForm reviewId={id} />
-//     }
-//   }
+  const displayInput = () => {
+    if (commentInput === true) {
+      return <CommentForm reviewId={id} />
+    }
+  }
 
-//   const ViewComments = () => {
-//     return history.push(`/comments/${id}`)
-//   }
-
-//   const ManageTags = () => {
-//     return history.push(`/AddTagForm/review/${review.id}`)
-//   }
+  const ViewComments = () => {
+    return history.push(`/comments/${id}`)
+  }
 
   if (!review) {
     return null
@@ -73,27 +68,9 @@ const [review, setReview] = useState()
                 {format(new Date(review.createDateTime), 'MM/dd/yyyy')} <br /><br />
               </div>
             </div>
-            {/* <div className="reviewTags">
-              {
-                (review.userProfileId === userProfile.id)
-                  ? <Button className="mngTagBtn"
-                    color="info"
-                    onClick={
-                      evt => {
-                        evt.preventDefault()
-                        ManageTags()
-                      }
-                    }>Manage Tags
-                  </Button>
-                  : ""
-              }
-              <div></div>
-              <ListGroupItem className="reviewTagList"><div className="reviewTags"> <strong>Tags: </strong>  {review.reviewTags.map(pt => <TagsOnReview key={pt.id} reviewTag={pt} />)}</div></ListGroupItem>
-              <div></div>
-            </div> */}
           </CardBody>
 
-          {/* <div className="commentBtns">
+          <div className="commentBtns">
             <Button className="viewCommentBtn" color="secondary"
               onClick={
                 evt => {
@@ -101,9 +78,9 @@ const [review, setReview] = useState()
                   ViewComments()
                 }
               }>View Comments
-            </Button> */}
+            </Button>
 
-            {/* <Button type="submit"
+            <Button type="submit"
               color="primary"
               onClick={
                 evt => {
@@ -113,12 +90,12 @@ const [review, setReview] = useState()
               }
               className="addCommentBtn">
               Add Comment
-            </Button> */}
-          {/* </div> */}
+            </Button>
+          </div>
 
-          {/* <div>
+          <div>
             {displayInput()}
-          </div> */}
+          </div>
         </Card>
       </div>
     </div>

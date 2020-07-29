@@ -3,7 +3,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { ReviewList } from "./ReviewList";
 import { UserReviewList } from "./UserReviewList";
+import { EditReviewForm } from "./EditReviewForm";
 import ReviewDetails from "./ReviewDetails";
+import { CommentForm } from "./CommentForm";
+import { CommentList } from "./CommentList";
 import Login from "./Login";
 import Register from "./Register";
 
@@ -15,7 +18,7 @@ export default function ApplicationViews() {
     <main>
       <Switch>
         <Route path="/" exact>
-          <p>HI WELCOME TO MOO-V</p><Redirect to="/" />
+          <p>HI WELCOME TO MOO-V</p><Redirect to="/reviews" />
         </Route>
 
         <Route path="/" exact>
@@ -30,8 +33,20 @@ export default function ApplicationViews() {
           {isLoggedIn ? <UserReviewList /> : <Redirect to="/login" />}
         </Route>
 
+        <Route path='/reviews/update/:id' exact>
+          <EditReviewForm />
+        </Route>
+
         <Route path='/reviews/:id' exact>
           {isLoggedIn ? <ReviewDetails /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/comments/:id" exact>
+          {isLoggedIn ? <CommentList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/comments/add/:id" exact>
+          {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

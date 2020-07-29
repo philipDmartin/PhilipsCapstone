@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Card, CardImg, CardBody, ModalHeader, ModalBody, Modal, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { UserReviewContext } from "../providers/UserReviewProvider";
-// import { EditReviewForm } from "./EditReviewForm";
+import { EditReviewForm } from "./EditReviewForm";
 import { format } from "date-fns"
 
 export const UserReview = ({ review }) => {
@@ -69,13 +69,13 @@ export const UserReview = ({ review }) => {
                             </ModalBody>
                         </Modal>
                     </div>
-                    {/* <div><Button color="warning" onClick={toggleEdit}>Edit</Button>
+                    <div><Button color="warning" onClick={toggleEdit}>Edit</Button>
                         <Modal isOpen={editModal} toggle={toggleEdit}>
                             <ModalBody className="ReviewModalBody">
                                 <EditReviewForm review={review} toggle={toggleEdit} />
                             </ModalBody>
                         </Modal>
-                    </div> */}
+                    </div>
                 </div>
             </CardBody>
         </Card>
