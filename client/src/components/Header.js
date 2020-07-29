@@ -41,6 +41,14 @@ export default function Header() {
             }
           </Nav>
 
+          <Nav className="mr-auto" navbar>
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/profile">Profile</NavLink>
+              </NavItem>
+            }
+            </Nav>
+
           {/* <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <NavItem>
@@ -72,15 +80,7 @@ export default function Header() {
                 <NavLink tag={RRNavLink} to="/tags">Tags</NavLink>
               </NavItem>
             }
-          </Nav>
-
-          <Nav className="mr-auto" navbar>
-            {isLoggedIn && userProfile.userTypeId === 1 &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/profiles">Profiles</NavLink>
-              </NavItem>
-            }
-            </Nav> */}
+          </Nav> */}
 
           <Nav navbar>
             {isLoggedIn &&
