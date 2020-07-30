@@ -44,10 +44,18 @@ export default function Header() {
           <Nav className="mr-auto" navbar>
             {isLoggedIn &&
               <NavItem>
-                <NavLink tag={RRNavLink} to="/profile">Profile</NavLink>
+                <NavLink tag={RRNavLink} to={`/profile/${userProfile.id}`}>Profile</NavLink>
               </NavItem>
             }
             </Nav>
+
+            <Nav className="mr-auto" navbar>
+            {isLoggedIn &&
+              <NavItem>
+                <NavLink tag={RRNavLink} to="/favoritePosts">FavoritePost</NavLink>
+              </NavItem>
+            }
+          </Nav> 
 
           {/* <Nav className="mr-auto" navbar>
             {isLoggedIn &&

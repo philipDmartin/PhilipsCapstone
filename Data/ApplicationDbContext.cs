@@ -15,7 +15,7 @@ namespace PhilipsCapstone.Data
         public DbSet<UserType> UserType { get; set; }
         public DbSet<Review> Review { get; set; }
         public DbSet<Comment> Comment { get; set; }
-        //public DbSet<FavoritePost> FavoritePost { get; set; }
+        public DbSet<FavoritePost> FavoritePost { get; set; }
         //public DbSet<FavoriteMovies> FavoriteMovies { get; set; }
 
     }
