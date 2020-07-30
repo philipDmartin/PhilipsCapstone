@@ -69,7 +69,7 @@ export const ReviewProvider = (props) => {
 
     return (
         <ReviewContext.Provider value={{
-            reviews, getAllReviews, addReview, deleteReview, getReview, getAllReviews, updateReview
+            reviews, getAllReviews, addReview, deleteReview, getReview, updateReview
         }}>
             {props.children}
         </ReviewContext.Provider>

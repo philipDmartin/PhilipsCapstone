@@ -84,6 +84,7 @@ namespace PhilipsCapstone.Controllers
             _userProfileRepository.Update(userProfile);
             return NoContent();
         }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

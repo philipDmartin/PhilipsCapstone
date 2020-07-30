@@ -1,25 +1,42 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Card, CardBody, Button, ModalBody, Modal, ModalHeader, CardImg } from "reactstrap";
-import { Link } from "react-router-dom";
-// import { UserTypeForm } from "./UserTypeForm";
+import { Link, useParams } from "react-router-dom";
+import { EditProfileForm } from "./EditProfileForm";
+import { UserProfileContext } from "../providers/UserProfileProvider";
 
 export const Profile = () => {
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+    const {Id} = useParams()
+    const { getProfile } = useContext(UserProfileContext)
+
+    const [userProfile, setUserProfile] = useState([])
 
     const [modal, setModal] = useState(false)
-    const toggleEdit = () => setModal(!modal)
+    const toggle = () => setModal(!modal)
+
+    const [editModal, setEditModal] = useState(false)
+    const toggleEdit = () => setEditModal(!editModal)
+
+    useEffect(() => {
+        getProfile(parseInt(Id)).then(setUserProfile);
+    }, []);
 
     return (
         <Card className="profile_details">
             <section className="upd_details">
                 <CardBody className="upd_card">
-                    <h1>{userProfile.firstName} {userProfile.lastName}</h1>
-                    <br />
-                    <h3>UserName:  {userProfile.displayName}</h3>
-                    <h3>Email:  {userProfile.email}</h3>
+                        <h1>{userProfile.firstName} {userProfile.lastName}</h1>
+                        <br />
+                        <h3>UserName:  {userProfile.displayName}</h3>
+                        <h3>Email:  {userProfile.email}</h3>
                     <CardImg className="upd_img" src={userProfile.imageLocation} />
+                    <div><Button color="warning" onClick={toggleEdit}>Edit</Button>
+                        <Modal isOpen={editModal} toggle={toggleEdit}>
+                            <ModalBody className="ProfileModalBody">
+                                <EditProfileForm userProfile={userProfile} toggle={toggleEdit} />
+                            </ModalBody>
+                        </Modal>
+                    </div>
                 </CardBody>
-                <div><Button color="warning" onClick={toggleEdit}>Edit</Button></div>
             </section>
         </Card>
     );

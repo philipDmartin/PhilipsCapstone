@@ -81,16 +81,17 @@ export function UserProfileProvider(props) {
       }).then(resp => resp.json()));
   };
 
-  const updateProfile = (profile) =>
-    getToken().then((token) =>
-      fetch(`api/userprofile/${profile.id}`, {
+  const updateProfile = (userProfile) => {
+    return getToken().then((token) =>
+      fetch(apiUrl + `/${userProfile.id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(profile)
-      })).then(getUserProfiles)
+        body: JSON.stringify(userProfile)
+      }))
+    }
 
   const saveUser = (userProfile) => {
     return getToken().then((token) =>
