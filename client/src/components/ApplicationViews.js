@@ -10,7 +10,7 @@ import { CommentList } from "./CommentList";
 import Login from "./Login";
 import Register from "./Register";
 import { Profile } from "./UserProfile";
-// import { FavoritePostList } from "./FavoritePostList";
+import { FavoritePostList } from "./FavoritePostList";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -55,9 +55,9 @@ export default function ApplicationViews() {
           {isLoggedIn ? <Profile /> : <Redirect to="/reviews" />}
         </Route>
 
-        {/* <Route path="/favoritePosts" exact>
+        <Route path="/favoritePosts" exact>
           {isLoggedIn ? <FavoritePostList /> : <Redirect to="/login" />}
-        </Route> */}
+        </Route>
 
         <Route path="/login">
           <Login />
