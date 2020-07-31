@@ -57,9 +57,11 @@ namespace PhilipsCapstone.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, FavoritePost favoritePost)
         {
-            if (id != favoritePost.Id)
+            var user = GetCurrentUserProfile();
+
+            if (user.Id != favoritePost.UserProfileId)
             {
-                return BadRequest();
+                return Forbid();
             }
 
             _favoritePostRepository.Update(favoritePost);

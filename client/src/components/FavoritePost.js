@@ -1,9 +1,11 @@
-import React from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import React, { useContext, useState } from "react";
+import { Card, CardImg, CardBody, ModalHeader, ModalBody, Modal, Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import { format } from 'date-fns'
 
 export const FavoritePost = ({ favoritePost }) => {
+
+// debugger
     return (
         <Card className="m-4 favoritePost">
             <CardBody>
@@ -16,6 +18,7 @@ export const FavoritePost = ({ favoritePost }) => {
                     <p>by: {favoritePost.userProfile.displayName}</p>
                     <p>Created: {format(new Date(favoritePost.createDateTime), 'MM/dd/yyyy')}</p>
                 </div>
+                
             </CardBody>
         </Card>
     );

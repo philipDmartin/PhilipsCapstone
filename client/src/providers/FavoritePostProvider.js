@@ -45,7 +45,7 @@ export const FavoritePostProvider = (props) => {
         }).then(getAllFavoritePosts));
 
     }
-
+// debugger
     const deleteFavoritePost = (id) => {
         return getToken().then((token) =>
             fetch(apiUrl + `/${id}`, {
