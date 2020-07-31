@@ -20,7 +20,7 @@ export const FavoritePost = ({ favoritePost }) => {
         <Card className="m-4 favoritePost">
             <CardBody>
                 <div className="favoritePostTitle">
-                    <Link to={`/favoritePosts/${favoritePost.id}`}>
+                    <Link to={`/favoriteMovies/${favoritePost.id}`}>
                         <h3>{favoritePost.title}</h3>
                     </Link>
                 </div>

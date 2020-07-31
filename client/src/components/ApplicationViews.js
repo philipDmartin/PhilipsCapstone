@@ -11,6 +11,8 @@ import Login from "./Login";
 import Register from "./Register";
 import { Profile } from "./UserProfile";
 import { FavoritePostList } from "./FavoritePostList";
+import { FavoriteMovieForm } from "./FavoriteMovieForm";
+import { FavoriteMovieList } from "./FavoriteMovieList";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -49,6 +51,14 @@ export default function ApplicationViews() {
 
         <Route path="/comments/add/:id" exact>
           {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/favoritemovies/:id" exact>
+          {isLoggedIn ? <FavoriteMovieList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/favoritemovies/add/:id" exact>
+          {isLoggedIn ? <FavoriteMovieForm /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/profile/:Id">
