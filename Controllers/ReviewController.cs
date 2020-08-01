@@ -81,6 +81,32 @@ namespace PhilipsCapstone.Controllers
             return NoContent();
         }
 
+        [HttpGet("filterreviewsbyuserProfile")]
+        public IActionResult FilterReviewsByUserProfile(int q, bool b)
+        {
+            if (q == 0)
+            {
+                if (b)
+                {
+                    return Ok(_reviewRepository.GetAll());
+                }
+                else
+                {
+                    return NoContent();
+                }
+            }
+            else
+            {
+                return Ok(_reviewRepository.GetAllReviewsByUserProfile(q, b));
+            }
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q, bool sortDesc)
+        {
+            return Ok(_reviewRepository.Search(q, sortDesc));
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

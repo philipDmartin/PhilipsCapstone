@@ -1,12 +1,21 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { useHistory } from 'react-router-dom'
 import { ReviewContext } from "../providers/ReviewProvider";
+import { UserProfileContext } from "../providers/UserProfileProvider";
+import { Label } from "reactstrap";
+
 import { Review } from "./Review";
+
+import { SearchBar } from "./ReviewSearchBar"
+import { SearchResults } from "./ReviewSearchResults"
 
 export const ReviewList = () => {
 
-    const { reviews, getAllReviews, addReview} = useContext(ReviewContext);
+    const { reviews, getAllReviews, addReview, filterReviewsByUserProfile} = useContext(ReviewContext);
+    const { getUserProfiles, userProfiles } = useContext(UserProfileContext);
+
     const [reviewInput, setInput] = useState(false)
+    const [searchTerms, setTerms] = useState(null);
 
     const title = useRef('title')
     const content = useRef('content')
@@ -19,6 +28,18 @@ export const ReviewList = () => {
     useEffect(() => {
         getAllReviews();
     }, []);
+
+    useEffect(() => {
+        getUserProfiles();
+      }, []);
+    
+      const handleUserProfileChange = (e) => {
+        e.preventDefault();
+    
+        const criterion = +e.target.value
+        const approved = true
+        filterReviewsByUserProfile(criterion, approved);
+      };
 
     const constructNewReview = () => {
         addReview({
@@ -94,6 +115,32 @@ export const ReviewList = () => {
 
     return (
         <section>
+            <div className="row justify-content-center">
+            <div className="reviewList">
+                <SearchBar setTerms={setTerms} />
+                <SearchResults searchTerms={searchTerms} />
+                <div className="filterContainer">
+                {/* <Label for="content">Filter by UserProfile</Label>
+                <select required onChange={handleUserProfileChange}>
+                    <option key={0} value="0"> Choose UserProfile</option>
+                    {
+                    userProfiles.map(c => {
+                        return <option key={c.id} value={c.id}>{c.displayName}</option>
+                    })
+                    }
+                </select>
+                </div>
+                <div className="cards-column">
+                {
+                    (userProfiles.length > 0)
+                    ? userProfiles.map((review) => (
+                        <Review key={review.id} review={review} />
+                    ))
+                    : <div><p>No reviews matched your criteria.</p></div>
+                } */}
+                </div>
+            </div>
+            </div>
             <div>
                 <div className="addReviewBtn">
                     <button type="submit"
@@ -119,3 +166,35 @@ export const ReviewList = () => {
         </section>
     );
 };
+
+
+
+// return (
+//     <div className="row justify-content-center">
+//       <div className="reviewList">
+//         <SearchBar setTerms={setTerms} />
+//         <SearchResults searchTerms={searchTerms} />
+//         <div className="filterContainer">
+//           <Label for="content">Filter by UserProfile</Label>
+//           <select required onChange={handleUserProfileChange}>
+//             <option key={0} value="0"> Choose UserProfile</option>
+//             {
+//               userprofiles.map(c => {
+//                 return <option key={c.id} value={c.id}>{c.displayName}</option>
+//               })
+//             }
+//           </select>
+//         </div>
+//         <div className="cards-column">
+//           {
+//             (userprofiles.length > 0)
+//               ? userprofiles.map((review) => (
+//                 <Review key={review.id} review={review} />
+//               ))
+//               : <div><p>No reviews matched your criteria.</p></div>
+//           }
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };

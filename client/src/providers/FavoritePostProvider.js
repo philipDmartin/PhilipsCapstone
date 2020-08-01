@@ -67,9 +67,27 @@ export const FavoritePostProvider = (props) => {
             }).then(resp => resp.json()));
     };
 
+    
+    const filterFavoritePostsByUserProfile = (criterion, approved) =>
+    getToken().then((token) =>
+      fetch(apiUrl + `/filterfavoritepostsbyuserprofile?q=${criterion}&b=${approved}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((res) => res.json())
+        .then(setFavoritePosts));
+
+
+    const searchFavoritePosts = (search) => {
+        return fetch(`api/review/search?q=${search}`)
+          .then(res => res.json())
+          .then(setFavoritePosts)
+      };
+
     return (
         <FavoritePostContext.Provider value={{
-            favoritePosts, getAllFavoritePosts, addFavoritePost, deleteFavoritePost, getFavoritePost, updateFavoritePost
+            favoritePosts, getAllFavoritePosts, addFavoritePost, deleteFavoritePost, getFavoritePost, updateFavoritePost, filterFavoritePostsByUserProfile, searchFavoritePosts
         }}>
             {props.children}
         </FavoritePostContext.Provider>

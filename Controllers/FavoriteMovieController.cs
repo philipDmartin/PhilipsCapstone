@@ -18,7 +18,6 @@ namespace PhilipsCapstone.Controllers
         private readonly FavoriteMovieRepository _favoriteMovieRepository;
         private readonly UserProfileRepository _userProfileRepository;
 
-
         public FavoriteMovieController(ApplicationDbContext context)
         {
             _favoriteMovieRepository = new FavoriteMovieRepository(context);
