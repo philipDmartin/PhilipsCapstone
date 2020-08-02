@@ -67,9 +67,19 @@ export const ReviewProvider = (props) => {
             }).then(resp => resp.json()));
     };
 
+    const searchReviews = searchTerm => {
+        return getToken().then((token) =>
+        fetch(`/api/review/search?q=${searchTerm}&sortDesc=true`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(res => res.json().then(setReviews)));
+      };
+
     return (
         <ReviewContext.Provider value={{
-            reviews, getAllReviews, addReview, deleteReview, getReview, updateReview
+            reviews, getAllReviews, addReview, deleteReview, getReview, updateReview, searchReviews
         }}>
             {props.children}
         </ReviewContext.Provider>

@@ -13,58 +13,63 @@ namespace PhilipsCapstone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FavoritePostController : ControllerBase
+    public class FavoriteMovieController : ControllerBase
     {
-        private readonly FavoritePostRepository _favoritePostRepository;
+        private readonly FavoriteMovieRepository _favoriteMovieRepository;
         private readonly UserProfileRepository _userProfileRepository;
 
-        public FavoritePostController(ApplicationDbContext context)
+        public FavoriteMovieController(ApplicationDbContext context)
         {
-            _favoritePostRepository = new FavoritePostRepository(context);
+            _favoriteMovieRepository = new FavoriteMovieRepository(context);
             _userProfileRepository = new UserProfileRepository(context);
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_favoritePostRepository.GetAll());
+            return Ok(_favoriteMovieRepository.GetAll());
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var favoritePost = _favoritePostRepository.GetById(id);
-            if (favoritePost == null)
+            var favoriteMovie = _favoriteMovieRepository.GetById(id);
+            if (favoriteMovie == null)
             {
                 return NotFound();
             }
-            return Ok(favoritePost);
+            return Ok(favoriteMovie);
         }
 
-        [HttpGet("getbyuser/{id}")]
-        public IActionResult GetByUser(int id)
+        [HttpGet("getbyfavoritePost/{id}")]
+        public IActionResult GetByFavoritePost(int id)
         {
-            return Ok(_favoritePostRepository.GetByUserProfileId(id));
+            return Ok(_favoriteMovieRepository.GetByFavoritePostId(id));
         }
 
         [HttpPost]
-        public IActionResult FavoritePost(FavoritePost favoritePost)
+        public IActionResult FavoritePost(FavoriteMovie favoriteMovie)
         {
-            _favoritePostRepository.Add(favoritePost);
-            return CreatedAtAction("Get", new { id = favoritePost.Id }, favoritePost);
+            _favoriteMovieRepository.Add(favoriteMovie);
+            return CreatedAtAction("Get", new { id = favoriteMovie.Id }, favoriteMovie);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, FavoritePost favoritePost)
+        public IActionResult Put(int id, FavoriteMovie favoriteMovie)
         {
             var user = GetCurrentUserProfile();
 
-            if (user.Id != favoritePost.UserProfileId)
+            if (id != favoriteMovie.Id)
+            {
+                return BadRequest();
+            }
+
+            if (user.Id != favoriteMovie.FavoritePost.UserProfileId)
             {
                 return Forbid();
             }
 
-            _favoritePostRepository.Update(favoritePost);
+            _favoriteMovieRepository.Update(favoriteMovie);
             return NoContent();
         }
 
@@ -72,31 +77,19 @@ namespace PhilipsCapstone.Controllers
         public IActionResult Delete(int id)
         {
             var user = GetCurrentUserProfile();
-            var favoritePost = _favoritePostRepository.GetById(id);
-            if (user.Id != favoritePost.UserProfileId)
+            var favoriteMovie = _favoriteMovieRepository.GetById(id);
+            if (user.Id != favoriteMovie.FavoritePost.UserProfileId)
             {
                 return Forbid();
             }
-
-            _favoritePostRepository.Delete(id);
+            _favoriteMovieRepository.Delete(id);
             return NoContent();
-        }
-
-        [HttpGet("search")]
-        public IActionResult Search(string q, bool sortDesc)
-        {
-            if (String.IsNullOrEmpty(q))
-            {
-                return Ok(_favoritePostRepository.GetAll());
-            }
-            return Ok(_favoritePostRepository.Search(q, sortDesc));
         }
 
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
-
         }
     }
 }

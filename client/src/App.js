@@ -9,6 +9,7 @@ import { ReviewProvider } from './providers/ReviewProvider';
 import { UserReviewProvider } from './providers/UserReviewProvider';
 import { UserTypeProvider } from './providers/UserTypeProvider.js';
 import { FavoritePostProvider } from './providers/FavoritePostProvider.js';
+import { FavoriteMovieProvider } from './providers/FavoriteMovieProvider';
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
             <UserReviewProvider>
               <CommentProvider>
                 <FavoritePostProvider>
-                  <Header />
-                  <ApplicationViews />
-                </FavoritePostProvider>
+                  <FavoriteMovieProvider>
+                    <Header />
+                    <ApplicationViews />
+                    </FavoriteMovieProvider>
+                  </FavoritePostProvider>
               </CommentProvider>
             </UserReviewProvider>
           </ReviewProvider>

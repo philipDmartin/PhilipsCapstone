@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { useHistory } from 'react-router-dom'
 import { ReviewContext } from "../providers/ReviewProvider";
+import { UserProfileContext } from "../providers/UserProfileProvider";
+import { Label } from "reactstrap";
+import { Form } from 'reactstrap';
 import { Review } from "./Review";
+import ReviewSearch from "./ReviewSearch";
 
 export const ReviewList = () => {
 
-    const { reviews, getAllReviews, addReview} = useContext(ReviewContext);
+    const { reviews, getAllReviews, addReview, searchReviews, filterReviewsByUserProfile} = useContext(ReviewContext);
+    const { getUserProfiles, userProfiles } = useContext(UserProfileContext);
     const [reviewInput, setInput] = useState(false)
-
+    const [searchTerms, setTerms] = useState(null);
+    
     const title = useRef('title')
     const content = useRef('content')
     const stars = useRef('stars')
@@ -94,28 +100,30 @@ export const ReviewList = () => {
 
     return (
         <section>
-            <div>
-                <div className="addReviewBtn">
-                    <button type="submit"
-                        onClick={
-                            evt => {
-                                evt.preventDefault()
-                                setInput(true)
+            <div className="row justify-content-center"></div>
+                <div>
+                    <div className="addReviewBtn">
+                        <button type="submit"
+                            onClick={
+                                evt => {
+                                    evt.preventDefault()
+                                    setInput(true)
+                                }
                             }
-                        }
                         className="btn btn-primary">
                         Add</button>
+                    </div>
                 </div>
-            </div>
-            <br />
+                <br />
             <div className="addReviewStyle">
                 {displayInput()}
             </div>
-            <div className="cards-column">
-                        {reviews.map((review) => (
-                            <Review key={review.id} review={review} />
-                        ))}
-                    </div>
+                <div className="cards-column">
+                    <ReviewSearch/>
+                    {reviews.map((review) => (
+                        <Review key={review.id} review={review} />
+                    ))}
+                </div>
         </section>
     );
 };

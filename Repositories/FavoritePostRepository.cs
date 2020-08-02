@@ -61,5 +61,16 @@ namespace PhilipsCapstone.Repositories
             _context.FavoritePost.Remove(favoritePost);
             _context.SaveChanges();
         }
+
+        public List<FavoritePost> Search(string criterion, bool sortDescending)
+        {
+            var query = _context.FavoritePost
+                                .Include(p => p.UserProfile)
+                                .Where(p => p.Title.Contains(criterion));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.CreateDateTime).ToList()
+                : query.OrderBy(p => p.CreateDateTime).ToList();
+        }
     }
 }

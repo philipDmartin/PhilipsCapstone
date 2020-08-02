@@ -38,7 +38,6 @@ namespace PhilipsCapstone.Repositories
         public List<Review> GetByUserProfileId(int id)
         {
             return _context.Review.Include(p => p.UserProfile)
-                            //.Include(p => p.Comments)
                             .Where(p => p.UserProfileId == id)
                             .OrderByDescending(p => p.CreateDateTime)
                             .ToList();
@@ -61,6 +60,17 @@ namespace PhilipsCapstone.Repositories
             var review = GetById(id);
             _context.Review.Remove(review);
             _context.SaveChanges();
+        }
+
+        public List<Review> Search(string criterion, bool sortDescending)
+        {
+            var query = _context.Review
+                                .Include(p => p.UserProfile)
+                                .Where(p => p.Title.Contains(criterion));
+
+            return sortDescending
+                ? query.OrderByDescending(p => p.CreateDateTime).ToList()
+                : query.OrderBy(p => p.CreateDateTime).ToList();
         }
     }
 }

@@ -2,15 +2,22 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { useHistory } from 'react-router-dom'
 import { FavoritePostContext } from "../providers/FavoritePostProvider";
 import { FavoritePost } from "./FavoritePost";
+import { UserProfileContext } from "../providers/UserProfileProvider";
+import { Label } from "reactstrap";
+
+import FavoritePostSearch from "./FavoritePostSearch";
 
 export const FavoritePostList = () => {
 
-    const { favoritePosts, getAllFavoritePosts, addFavoritePost} = useContext(FavoritePostContext);
+    const { favoritePosts, getAllFavoritePosts, addFavoritePost, filterfavoritePostsByUserProfile} = useContext(FavoritePostContext);
+    const { getUserProfiles, userProfiles } = useContext(UserProfileContext);
     const [favoritePostInput, setInput] = useState(false)
-
-    const title = useRef('title')
+    const [searchTerms, setTerms] = useState(null);
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
+
     const history = useHistory()
+    const title = useRef('title')
+
 
     useEffect(() => {
         getAllFavoritePosts();
@@ -54,7 +61,8 @@ export const FavoritePostList = () => {
 
     return (
         <section>
-            <div>
+            <div className="row justify-content-center"></div>
+              <div>
                 <div className="addFavoritePostBtn">
                     <button type="submit"
                         onClick={
@@ -72,6 +80,7 @@ export const FavoritePostList = () => {
                 {displayInput()}
             </div>
             <div className="cards-column">
+                        <FavoritePostSearch/>
                         {favoritePosts.map((favoritePost) => (
                             <FavoritePost key={favoritePost.id} favoritePost={favoritePost} />
                         ))}

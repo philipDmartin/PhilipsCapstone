@@ -18,5 +18,6 @@ namespace PhilipsCapstone.Models
         public int UserProfileId { get; set; }
 
         public UserProfile UserProfile { get; set; }
+
     }
 }
