@@ -30,7 +30,7 @@ export const FavoriteMovieList = () => {
     return (
         <div className="container">
             <div className="row justify-content-center">
-            {/* <Button type="submit"
+            <Button type="submit"
               color="primary"
               onClick={
                 evt => {
@@ -40,7 +40,7 @@ export const FavoriteMovieList = () => {
               }
               className="addFavoriteMovieBtn">
               Add FavoriteMovie
-            </Button>    */}
+            </Button>   
           <div>
             {displayInput()}
           </div>

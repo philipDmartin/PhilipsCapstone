@@ -12,23 +12,22 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
     const why = useRef()
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
-
     const { deleteFavoriteMovie, updateFavoriteMovie } = useContext(FavoriteMovieContext)
     const { favoritePost } = useContext(FavoritePostContext)
 
-    // const [editModal, setEditModal] = useState(false)
-    // const toggleEdit = () => setEditModal(!editModal)
+    const [editModal, setEditModal] = useState(false)
+    const toggleEdit = () => setEditModal(!editModal)
 
-    // const favoriteMovieEdit = (favoriteMovie) => {
-    //     return updateFavoriteMovie({
-    //         id: parseInt(favoriteMovie.id),
-    //         why: why.current.value,
-    //         reviewId: reviewId,
-    //         FavoritePostId: FavoritePostId,
-    //         userProfileId: favoriteMovie.favoritePost.userProfile.id,
-    //         createDateTime: favoriteMovie.favoritePost.createDateTime
-    //     }).then(toggleEdit)
-    // }
+    const favoriteMovieEdit = (favoriteMovie) => {
+        return updateFavoriteMovie({
+            id: parseInt(favoriteMovie.id),
+            why: why.current.value,
+            // reviewId: reviewId,
+            // FavoritePostId: FavoritePostId,
+            userProfileId: favoriteMovie.favoritePost.userProfile.id,
+            createDateTime: favoriteMovie.favoritePost.createDateTime
+        }).then(toggleEdit)
+    }
 
     return (
         <Card className="favoriteMovie_card">
@@ -36,8 +35,8 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
             <CardBody>
                 <p>Why: {favoriteMovie.why}</p>
                 <div>
-                    {/* <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button> */}
-                    {/* <Modal isOpen={editModal} toggle={toggleEdit}>
+                    <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button>
+                    <Modal isOpen={editModal} toggle={toggleEdit}>
                         <ModalHeader toggle={toggleEdit}>
                             Edit {favoriteMovie.why}</ModalHeader>
                         <ModalBody >
@@ -72,9 +71,9 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
                                 </div>
                             </div>
                         </ModalBody>
-                    </Modal> */}
+                    </Modal>
 
-                    {/* <Button color="danger" onClick={toggle}>Delete</Button>
+                    <Button color="danger" onClick={toggle}>Delete</Button>
 
                     <Modal isOpen={modal} toggle={toggle}>
                         <ModalHeader toggle={toggle}>
@@ -98,7 +97,7 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
                                 className="btn btn-danger">
                                 Delete</button>
                         </ModalBody>
-                    </Modal> */}
+                    </Modal>
                 </div>
             </CardBody>
         </Card>
