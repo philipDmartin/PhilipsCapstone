@@ -1,19 +1,21 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, Link } from "react";
 import { Card, CardBody, Button, ModalBody, Modal, ModalHeader } from "reactstrap";
 import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
 import { FavoritePostContext } from "../providers/FavoritePostProvider";
-
-import { format } from "date-fns"
+import { ReviewContext } from "../providers/ReviewProvider";
 
 export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
 
     const why = useRef()
+    // const review = useRef()
+
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const { deleteFavoriteMovie, updateFavoriteMovie } = useContext(FavoriteMovieContext)
     const { favoritePost } = useContext(FavoritePostContext)
+    const { review } = useContext(ReviewContext)
 
     const [editModal, setEditModal] = useState(false)
     const toggleEdit = () => setEditModal(!editModal)
@@ -22,8 +24,8 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
         return updateFavoriteMovie({
             id: parseInt(favoriteMovie.id),
             why: why.current.value,
-            // reviewId: reviewId,
-            // FavoritePostId: FavoritePostId,
+            review: favoriteMovie.review,
+            FavoritePostId: favoriteMovie.FavoritePostId,
             userProfileId: favoriteMovie.favoritePost.userProfile.id,
             createDateTime: favoriteMovie.favoritePost.createDateTime
         }).then(toggleEdit)
@@ -31,9 +33,16 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
 
     return (
         <Card className="favoriteMovie_card">
-            {/* <p className="text-left px-2">FavoriteMovie by: {favoritePost.userProfile.displayName}</p> */}
             <CardBody>
                 <p>Why: {favoriteMovie.why}</p>
+                <p>Review: {favoriteMovie.reviewId}</p>
+                
+                {/* <div className="reviewTitle">
+                    <Link to={`/reviews/${favoriteMovie.id}`}>
+                        <h3>{favoriteMovie.reviewId}</h3>
+                    </Link>
+                </div> */}
+
                 <div>
                     <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button>
                     <Modal isOpen={editModal} toggle={toggleEdit}>
@@ -49,6 +58,16 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
                                     autoFocus
                                     className="form-control"
                                     defaultValue={favoriteMovie.why}
+                                />
+                                <br />
+                                <input
+                                    type="text"
+                                    id="review"
+                                    ref={review}
+                                    required
+                                    autoFocus
+                                    className="form-control"
+                                    defaultValue={favoriteMovie.review}
                                 />
                                 <br />
                                 <div className="">

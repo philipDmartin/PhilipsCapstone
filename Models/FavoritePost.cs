@@ -19,6 +19,5 @@ namespace PhilipsCapstone.Models
 
         public UserProfile UserProfile { get; set; }
 
-        public List<FavoritePostUserProfile> FavoritePostUserProfiles { get; set; } = new List<FavoritePostUserProfile>();
     }
 }

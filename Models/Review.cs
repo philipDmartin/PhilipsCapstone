@@ -27,6 +27,5 @@ namespace PhilipsCapstone.Models
 
         public UserProfile UserProfile { get; set; }
 
-        public List<ReviewUserProfile> ReviewUserProfiles { get; set; } = new List<ReviewUserProfile>();
     }
 }

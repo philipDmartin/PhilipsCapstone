@@ -65,25 +65,12 @@ namespace PhilipsCapstone.Repositories
         public List<FavoritePost> Search(string criterion, bool sortDescending)
         {
             var query = _context.FavoritePost
-                                .Include(p => p.FavoritePostUserProfiles)
-                                .ThenInclude(pt => pt.UserProfile)
                                 .Include(p => p.UserProfile)
-                                .Where(p => p.FavoritePostUserProfiles.Any(pt => pt.UserProfile.DisplayName.Contains(criterion)));
+                                .Where(p => p.Title.Contains(criterion));
 
             return sortDescending
                 ? query.OrderByDescending(p => p.CreateDateTime).ToList()
                 : query.OrderBy(p => p.CreateDateTime).ToList();
-
-        }
-
-        public List<FavoritePost> GetAllFavoritePostByUserProfile(int criterion, bool approved)
-        {
-            return _context.FavoritePost
-                            .Include(p => p.UserProfile)
-                            .Include(p => p.FavoritePostUserProfiles)
-                            .ThenInclude(pt => pt.UserProfile)
-                            .Where(p => p.UserProfileId == criterion && p.CreateDateTime <= DateTime.Now)
-                            .OrderByDescending(p => p.CreateDateTime).ToList();
         }
     }
 }

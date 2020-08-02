@@ -82,29 +82,13 @@ namespace PhilipsCapstone.Controllers
             return NoContent();
         }
 
-        [HttpGet("filterfavoritepostsbyuserProfile")]
-        public IActionResult FilterFavoritePostsByUserProfile(int q, bool b)
-        {
-            if (q == 0)
-            {
-                if (b)
-                {
-                    return Ok(_favoritePostRepository.GetAll());
-                }
-                else
-                {
-                    return NoContent();
-                }
-            }
-            else
-            {
-                return Ok(_favoritePostRepository.GetAllFavoritePostByUserProfile(q, b));
-            }
-        }
-
         [HttpGet("search")]
         public IActionResult Search(string q, bool sortDesc)
         {
+            if (String.IsNullOrEmpty(q))
+            {
+                return Ok(_favoritePostRepository.GetAll());
+            }
             return Ok(_favoritePostRepository.Search(q, sortDesc));
         }
 

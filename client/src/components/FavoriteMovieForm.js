@@ -6,6 +6,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
     const why = useRef('why')
+    
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
     const history = useHistory()
 
