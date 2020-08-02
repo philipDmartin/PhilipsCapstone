@@ -38,7 +38,6 @@ namespace PhilipsCapstone.Repositories
         public List<Review> GetByUserProfileId(int id)
         {
             return _context.Review.Include(p => p.UserProfile)
-                            //.Include(p => p.Comments)
                             .Where(p => p.UserProfileId == id)
                             .OrderByDescending(p => p.CreateDateTime)
                             .ToList();

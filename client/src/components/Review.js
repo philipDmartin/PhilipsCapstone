@@ -14,10 +14,10 @@ export const Review = ({ review }) => {
                     </Link>
                 </div>
                 <div className="reviewItems">
-                    {/* <p>Reviewed by: {review.userProfile.displayName}</p> */}
+                    <p>Reviewed by: {review.userProfile.displayName}</p>
                     <p>Category: {review.category}</p>
                     <p>Stars: {review.stars}</p>
-                    {/* <p>Created: {format(new Date(review.createDateTime), 'MM/dd/yyyy')}</p> */}
+                    <p>Created: {format(new Date(review.createDateTime), 'MM/dd/yyyy')}</p>
                 </div>
             </CardBody>
         </Card>

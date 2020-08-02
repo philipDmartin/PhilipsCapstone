@@ -20,6 +20,7 @@ namespace PhilipsCapstone.Models
         public DateTime CreateDateTime { get; set; }
 
         public string Category { get; set; }
+
         public int Stars { get; set; }
 
         [Required]
