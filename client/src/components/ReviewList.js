@@ -3,11 +3,14 @@ import { useHistory } from 'react-router-dom'
 import { ReviewContext } from "../providers/ReviewProvider";
 import { UserProfileContext } from "../providers/UserProfileProvider";
 import { Label } from "reactstrap";
+import { Form } from 'reactstrap';
+import SelectSearch from 'react-select-search';
 
 import { Review } from "./Review";
+import ReviewSearch from "./ReviewSearch";
 
-import { SearchBar } from "./ReviewSearchBar"
-import { SearchResults } from "./ReviewSearchResults"
+// import { SearchBar } from "./ReviewSearchBar"
+// import { SearchResults } from "./ReviewSearchResults"
 
 export const ReviewList = () => {
 
@@ -29,17 +32,17 @@ export const ReviewList = () => {
         getAllReviews();
     }, []);
 
-    useEffect(() => {
-        getUserProfiles();
-      }, []);
+    // useEffect(() => {
+    //     getUserProfiles();
+    //   }, []);
     
-      const handleUserProfileChange = (e) => {
-        e.preventDefault();
+    //   const handleUserProfileChange = (e) => {
+    //     e.preventDefault();
     
-        const criterion = +e.target.value
-        const approved = true
-        filterReviewsByUserProfile(criterion, approved);
-      };
+    //     const criterion = +e.target.value
+    //     const approved = true
+    //     filterReviewsByUserProfile(criterion, approved);
+    //   };
 
     const constructNewReview = () => {
         addReview({
@@ -116,11 +119,11 @@ export const ReviewList = () => {
     return (
         <section>
             <div className="row justify-content-center">
-            <div className="reviewList">
+            {/* <div className="reviewList">
                 <SearchBar setTerms={setTerms} />
                 <SearchResults searchTerms={searchTerms} />
                 <div className="filterContainer">
-                {/* <Label for="content">Filter by UserProfile</Label>
+                <Label for="content">Filter by UserProfile</Label>
                 <select required onChange={handleUserProfileChange}>
                     <option key={0} value="0"> Choose UserProfile</option>
                     {
@@ -137,9 +140,9 @@ export const ReviewList = () => {
                         <Review key={review.id} review={review} />
                     ))
                     : <div><p>No reviews matched your criteria.</p></div>
-                } */}
+                }
                 </div>
-            </div>
+            </div> */}
             </div>
             <div>
                 <div className="addReviewBtn">
@@ -159,6 +162,7 @@ export const ReviewList = () => {
                 {displayInput()}
             </div>
             <div className="cards-column">
+                        <ReviewSearch/>
                         {reviews.map((review) => (
                             <Review key={review.id} review={review} />
                         ))}
