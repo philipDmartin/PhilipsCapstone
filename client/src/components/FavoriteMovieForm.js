@@ -6,7 +6,7 @@ import { ReviewContext } from '../providers/ReviewProvider'
 export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
-    const { reviews, getAllReveiwsByUser, getReview } = useContext(ReviewContext)
+    const { reviews, getAllReviewsByUser, getReview } = useContext(ReviewContext)
     const [review, setReview] = useState({})
 
     const id = useRef('id')
@@ -17,24 +17,22 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
     const history = useHistory()
 
     const constructNewFavoriteMovie = () => {
-
         const newFavoriteMovieObject = {
             why: why.current.value,
-            reviewId: reviewId.current.value,
-            createDateTime: new Date(),
+            reviewId: parseInt(reviewId.current.value),
             favoritePostId: parseInt(favoritePostId),
-            userProfileId: userProfile.id,
         }
 
         console.log(newFavoriteMovieObject)
         return addFavoriteMovie(newFavoriteMovieObject)
     }
-
+// debugger
     useEffect(() => {
-        getAllReveiwsByUser(id);
+        getAllReviewsByUser();
           getReview(id).then(setReview)
       }, [])
 
+    //   debugger
     return (
         <form className='favoriteMovieForm'>
             <h2 className='favoriteMovieForm__title'>New FavoriteMovie</h2>
@@ -69,7 +67,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                     <option value='0'>Select a Review</option>
                     {reviews.map(r => (
                         <option key={r.id} value={r.id}>
-                        {r.review}
+                        {r.title}
                         </option>
                     ))}
                     </select>
@@ -80,7 +78,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                 type='submit'
                 onClick={evt => {
                     evt.preventDefault() // Prevent browser from submitting the form
-                    constructNewFavoriteMovie().then(p => history.push(`/favoriteMovies/${favoritePostId}`))
+                    constructNewFavoriteMovie()
 
                 }}
                 className='btn btn-primary'

@@ -39,7 +39,7 @@ export const FavoriteMovieProvider = (props) => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(favoriteMovie)
-            }).then(resp => resp.json()))
+            }).then(resp => resp.json()).then(getAllFavoriteMoviesByUser(favoriteMovie.id)))
     };
 
     const updateFavoriteMovie = (favoriteMovie) => {

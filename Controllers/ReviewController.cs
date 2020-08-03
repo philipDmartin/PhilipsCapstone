@@ -42,10 +42,11 @@ namespace PhilipsCapstone.Controllers
             return Ok(review);
         }
 
-        [HttpGet("getbyuser/{id}")]
-        public IActionResult GetByUser(int id)
+        [HttpGet("getbyuser")]
+        public IActionResult GetByUser()
         {
-            return Ok(_reviewRepository.GetByUserProfileId(id));
+            var userProfile = GetCurrentUserProfile();
+            return Ok(_reviewRepository.GetByUserProfileId(userProfile.Id));
         }
 
         [HttpPost]
