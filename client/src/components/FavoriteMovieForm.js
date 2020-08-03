@@ -1,12 +1,17 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { FavoriteMovieContext } from '../providers/FavoriteMovieProvider';
+import { ReviewContext } from '../providers/ReviewProvider'
 
 export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
+    const { reviews, getAllReveiwsByUser, getReview } = useContext(ReviewContext)
+    const [review, setReview] = useState({})
+
+    const id = useRef('id')
     const why = useRef('why')
-    const review = useRef('review')
+    const reviewId = useRef('reviewId')
     
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
     const history = useHistory()
@@ -15,7 +20,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
 
         const newFavoriteMovieObject = {
             why: why.current.value,
-            review: review.current.value,
+            reviewId: reviewId.current.value,
             createDateTime: new Date(),
             favoritePostId: parseInt(favoritePostId),
             userProfileId: userProfile.id,
@@ -24,6 +29,11 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
         console.log(newFavoriteMovieObject)
         return addFavoriteMovie(newFavoriteMovieObject)
     }
+
+    useEffect(() => {
+        getAllReveiwsByUser(id);
+          getReview(id).then(setReview)
+      }, [])
 
     return (
         <form className='favoriteMovieForm'>
@@ -40,15 +50,29 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                         className='form-control'
                         placeholder='FavoriteMovie why'
                     />
-                     <input Review
-                        type='textarea'
-                        id='favoriteMovieContent'
-                        ref={review}
-                        required
-                        autoFocus
-                        className='form-control'
-                        placeholder='FavoriteMovie review'
-                    />
+                     
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className='form-group'>
+                    <label htmlFor='reviewId'>Assign Review: </label>
+                    <select
+                    defaultValue=''
+                    name='reviewId'
+                    ref={reviewId}
+                    id='reviewId'
+                    className='form-control'
+                    placeholder='reviewId'
+                    required
+                    autoFocus
+                    >
+                    <option value='0'>Select a Review</option>
+                    {reviews.map(r => (
+                        <option key={r.id} value={r.id}>
+                        {r.review}
+                        </option>
+                    ))}
+                    </select>
                 </div>
             </fieldset>
 

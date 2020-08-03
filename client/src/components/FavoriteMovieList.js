@@ -10,14 +10,14 @@ export const FavoriteMovieList = () => {
     const [favoritePost, setFavoritePost] = useState({})
     const { getFavoritePost } = useContext(FavoritePostContext)
 
-    const { favoriteMovies, getAllFavoriteMoviesByUser } = useContext(FavoriteMovieContext);
+    const { favoriteMovies, getFavoriteMoviesByFavoritePostId} = useContext(FavoriteMovieContext);
 
     const [favoriteMovieInput, setInput] = useState(false)
 
     const { id } = useParams()
 
     useEffect(() => {
-      getAllFavoriteMoviesByUser(id);
+      getFavoriteMoviesByFavoritePostId(id);
         getFavoritePost(id).then(setFavoritePost)
     }, [])
 
