@@ -10,14 +10,14 @@ export const FavoriteMovieList = () => {
     const [favoritePost, setFavoritePost] = useState({})
     const { getFavoritePost } = useContext(FavoritePostContext)
 
-    const { favoriteMovies, getFavoriteMoviesByFavoritePostId } = useContext(FavoriteMovieContext);
+    const { favoriteMovies, getAllFavoriteMoviesByUser } = useContext(FavoriteMovieContext);
 
     const [favoriteMovieInput, setInput] = useState(false)
 
     const { id } = useParams()
 
     useEffect(() => {
-        getFavoriteMoviesByFavoritePostId(id);
+      getAllFavoriteMoviesByUser(id);
         getFavoritePost(id).then(setFavoritePost)
     }, [])
 
@@ -26,7 +26,7 @@ export const FavoriteMovieList = () => {
           return <FavoriteMovieForm favoritePostId={id} />
         }
       }
-
+// debugger
     return (
         <div className="container">
             <div className="row justify-content-center">

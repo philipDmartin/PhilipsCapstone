@@ -66,9 +66,20 @@ export const FavoriteMovieProvider = (props) => {
             })).then(() => getFavoriteMoviesByFavoritePostId(favoriteMovie.favoritePostId))
     };
 
+    const getAllFavoriteMoviesByUser = () => {
+        getToken().then((token) =>
+            fetch(apiUrl + `/getbyuser`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json())
+                .then(setFavoriteMovies));
+    };
+
     return (
         <FavoriteMovieContext.Provider value={{
-            favoriteMovies, getFavoriteMoviesByFavoritePostId, getFavoriteMovie, addFavoriteMovie, updateFavoriteMovie, deleteFavoriteMovie
+            favoriteMovies, getFavoriteMoviesByFavoritePostId, getFavoriteMovie, addFavoriteMovie, updateFavoriteMovie, deleteFavoriteMovie, getAllFavoriteMoviesByUser
         }}>
             {props.children}
         </FavoriteMovieContext.Provider>
