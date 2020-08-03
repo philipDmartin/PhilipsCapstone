@@ -23,8 +23,19 @@ namespace PhilipsCapstone.Repositories
             return _context.FavoriteMovie // We get all favoriteMovies
                 .Include(c => c.FavoritePost.UserProfile) // We Include the user information as it relates to the favoriteMovie
                 .Include(c => c.FavoritePost) // We Include the FavoritePost information as it relates to the favoriteMovie
-                .ThenInclude(p => p.UserProfile) // Then we include the user information as it relates to the post
+                .ThenInclude(p => p.UserProfile)
+                .Include(p => p.Review)// Then we include the user information as it relates to the post
                 .ToList(); // Then we list it.
+        }
+
+        public List<FavoriteMovie> GetByUserProfileId(int id)
+        {
+            return _context.FavoriteMovie
+                .Include(p => p.FavoritePost)
+                .ThenInclude(p => p.UserProfile)
+                .Include(p => p.Review)
+                .Where(p => p.FavoritePost.UserProfileId == id)
+                .ToList();
         }
 
         public FavoriteMovie GetById(int id)

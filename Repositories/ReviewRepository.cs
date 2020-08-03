@@ -21,7 +21,6 @@ namespace PhilipsCapstone.Repositories
         {
             return _context.Review
                 .Include(p => p.UserProfile)
-                //.Include(p => p.Comments)
                 .OrderByDescending(p => p.CreateDateTime)
                 .ToList();
 
@@ -30,7 +29,6 @@ namespace PhilipsCapstone.Repositories
         public Review GetById(int id)
         {
             return _context.Review.Include(p => p.UserProfile)
-                                //.Include(p => p.Comments)
                                 .OrderByDescending(p => p.CreateDateTime)
                                 .FirstOrDefault(p => p.Id == id);
         }

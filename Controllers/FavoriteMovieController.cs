@@ -86,6 +86,13 @@ namespace PhilipsCapstone.Controllers
             return NoContent();
         }
 
+        [HttpGet("getbyuser")]
+        public IActionResult GetByUser()
+        {
+            var currentUser = GetCurrentUserProfile();
+            return Ok(_favoriteMovieRepository.GetByUserProfileId(currentUser.Id));
+        }
+
         private UserProfile GetCurrentUserProfile()
         {
             var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;

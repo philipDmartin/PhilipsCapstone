@@ -1,20 +1,18 @@
 import React, { useState, useContext, useRef, Link } from "react";
 import { Card, CardBody, Button, ModalBody, Modal, ModalHeader } from "reactstrap";
 import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
-import { FavoritePostContext } from "../providers/FavoritePostProvider";
 import { ReviewContext } from "../providers/ReviewProvider";
+import { format } from 'date-fns'
+
 
 export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
 
     const why = useRef()
-    // const review = useRef()
-
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
     const { deleteFavoriteMovie, updateFavoriteMovie } = useContext(FavoriteMovieContext)
-    const { favoritePost } = useContext(FavoritePostContext)
+
     const { review } = useContext(ReviewContext)
 
     const [editModal, setEditModal] = useState(false)
@@ -35,13 +33,11 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
         <Card className="favoriteMovie_card">
             <CardBody>
                 <p>Why: {favoriteMovie.why}</p>
-                <p>Review: {favoriteMovie.reviewId}</p>
-                
-                {/* <div className="reviewTitle">
-                    <Link to={`/reviews/${favoriteMovie.id}`}>
-                        <h3>{favoriteMovie.reviewId}</h3>
-                    </Link>
-                </div> */}
+                <p>Title: {favoriteMovie.review.title}</p>
+                <p>Image: {favoriteMovie.review.imageLocation}</p>
+                <p>Stars: {favoriteMovie.review.stars}</p>
+                <p>Category: {favoriteMovie.review.category}</p>
+                <p>Created: {format(new Date(favoriteMovie.review.createDateTime), 'MM/dd/yyyy')}</p>
 
                 <div>
                     <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button>

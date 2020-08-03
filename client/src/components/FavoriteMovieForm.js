@@ -6,6 +6,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
     const why = useRef('why')
+    const review = useRef('review')
     
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
     const history = useHistory()
@@ -14,6 +15,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
 
         const newFavoriteMovieObject = {
             why: why.current.value,
+            review: review.current.value,
             createDateTime: new Date(),
             favoritePostId: parseInt(favoritePostId),
             userProfileId: userProfile.id,
@@ -37,6 +39,15 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                         autoFocus
                         className='form-control'
                         placeholder='FavoriteMovie why'
+                    />
+                     <input Review
+                        type='textarea'
+                        id='favoriteMovieContent'
+                        ref={review}
+                        required
+                        autoFocus
+                        className='form-control'
+                        placeholder='FavoriteMovie review'
                     />
                 </div>
             </fieldset>

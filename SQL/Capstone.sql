@@ -87,3 +87,6 @@ GO
 
 ALTER TABLE [FavoriteMovies] ADD FOREIGN KEY ([FavoritePostId]) REFERENCES [FavoritePost] ([Id])
 GO
+
+ALTER TABLE [FavoriteMovie] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id])
+GO
