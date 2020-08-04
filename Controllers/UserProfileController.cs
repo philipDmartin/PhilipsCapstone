@@ -32,11 +32,16 @@ namespace PhilipsCapstone.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var userProfile = GetCurrentUserProfile();
-            if (userProfile.UserTypeId == 1)
+            var user = GetCurrentUserProfile();
+            if (user.UserTypeId == 1 || user.UserTypeId == 2)
             {
                 return Ok(_userProfileRepository.GetAll());
             }
+            //var userProfile = _userProfileRepository.GetById(Id);
+            //else if (user.Id != userProfile.id)
+            //{
+            //    return Forbid();
+            //}
             else
             {
                 return Unauthorized();
@@ -52,7 +57,7 @@ namespace PhilipsCapstone.Controllers
             {
                 return NotFound();
             }
-            else if (userProfile.UserTypeId == 1)
+            else if (userProfile.UserTypeId == 1 || userProfile.UserTypeId == 2)
             {
                 return Ok(_userProfileRepository.GetById(id));
             }

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, Link } from "react";
-import { Card, CardBody, Button, ModalBody, Modal, ModalHeader } from "reactstrap";
+import { Card, CardBody, Button, ModalBody, Modal, ModalHeader, CardImg } from "reactstrap";
 import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
 import { ReviewContext } from "../providers/ReviewProvider";
 import { format } from 'date-fns'
@@ -32,6 +32,7 @@ export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
     return (
         <Card className="favoriteMovie_card">
             <CardBody>
+                <CardImg top src={favoriteMovie.review.imageLocation} />
                 <p>Why: {favoriteMovie.why}</p>
                 <p>Title: {favoriteMovie.review.title}</p>
                 <p>Image: {favoriteMovie.review.imageLocation}</p>

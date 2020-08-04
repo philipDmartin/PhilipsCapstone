@@ -37,7 +37,6 @@ namespace PhilipsCapstone.Repositories
         public List<FavoritePost> GetByUserProfileId(int id)
         {
             return _context.FavoritePost.Include(fp => fp.UserProfile)
-                            //.Include(fp => fp.Comments)
                             .Where(fp => fp.UserProfileId == id)
                             .OrderByDescending(fp => fp.CreateDateTime)
                             .ToList();
@@ -59,6 +58,7 @@ namespace PhilipsCapstone.Repositories
         {
             var favoritePost = GetById(id);
             _context.FavoritePost.Remove(favoritePost);
+
             _context.SaveChanges();
         }
 
