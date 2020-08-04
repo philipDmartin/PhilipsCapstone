@@ -3,10 +3,12 @@ import { Card, CardImg, CardBody, ModalHeader, ModalBody, Modal, Button } from "
 import { Link } from "react-router-dom";
 import { UserReviewContext } from "../providers/UserReviewProvider";
 import { EditReviewForm } from "./EditReviewForm";
+import { CommentContext } from "../providers/CommentProvider";
 import { format } from "date-fns"
 
 export const UserReview = ({ review }) => {
     const { deleteReview } = useContext(UserReviewContext)
+    const { deleteComment, comment } = useContext(CommentContext)
 
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)

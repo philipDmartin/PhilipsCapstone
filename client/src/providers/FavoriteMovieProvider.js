@@ -44,7 +44,7 @@ export const FavoriteMovieProvider = (props) => {
     };
 
     const updateFavoriteMovie = (favoriteMovie) => {
-
+// debugger
         return getToken().then((token) =>
             fetch(apiUrl + `/${favoriteMovie.id}`, {
                 method: "PUT",
@@ -64,7 +64,7 @@ export const FavoriteMovieProvider = (props) => {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json"
                 },
-            })).then(() => getFavoriteMoviesByFavoritePostId(favoriteMovie.favoritePostId))
+            })).then( () => getFavoriteMoviesByFavoritePostId(favoriteMovie.favoritePostId))
     };
 
     const getAllFavoriteMoviesByUser = () => {
