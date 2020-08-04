@@ -4,7 +4,7 @@ import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
 import { ReviewContext } from "../providers/ReviewProvider";
 import { format } from 'date-fns'
 
-export const FavoriteMovie = ({ favoriteMovie, favoritePostId }) => {
+export const FavoriteMovie = ({ favoriteMovie }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
 

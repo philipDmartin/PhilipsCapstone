@@ -14,12 +14,7 @@ export const EditReviewForm = (props) => {
     setReview(newReview);
   };
 
-//   useEffect(() => {
-//     getAllCategories();
-//   }, []);
-
   const editReview = () => {
-    // profileUpdate.category = parseInt(profileUpdate.category);
     updateReview(profileUpdate).then(props.toggle).then(history.push(`/reviews/${props.review.id}`));
   };
 

@@ -1,20 +1,14 @@
-import React, { useContext, useRef, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useContext, useRef, useEffect, useState, useParams } from 'react'
 import { FavoriteMovieContext } from '../providers/FavoriteMovieProvider';
 import { ReviewContext } from '../providers/ReviewProvider'
 
 export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
-    const { reviews, getAllReviewsByUser, getReview } = useContext(ReviewContext)
-    const [review, setReview] = useState({})
+    const { reviews, getAllReviewsByUser } = useContext(ReviewContext)
 
-    const id = useRef('id')
     const why = useRef('why')
     const reviewId = useRef('reviewId')
-    
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
-    const history = useHistory()
 
     const constructNewFavoriteMovie = () => {
         const newFavoriteMovieObject = {
@@ -26,13 +20,11 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
         console.log(newFavoriteMovieObject)
         return addFavoriteMovie(newFavoriteMovieObject)
     }
-// debugger
+
     useEffect(() => {
         getAllReviewsByUser();
-          getReview(id).then(setReview)
       }, [])
 
-    //   debugger
     return (
         <form className='favoriteMovieForm'>
             <h2 className='favoriteMovieForm__title'>New FavoriteMovie</h2>

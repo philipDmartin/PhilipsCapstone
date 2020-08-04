@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { useHistory } from 'react-router-dom'
 import { ReviewContext } from "../providers/ReviewProvider";
-import { UserProfileContext } from "../providers/UserProfileProvider";
-import { Label } from "reactstrap";
-import { Form } from 'reactstrap';
 import { Review } from "./Review";
 import ReviewSearch from "./ReviewSearch";
 
 export const ReviewList = () => {
 
-    const { reviews, getAllReviews, addReview, searchReviews, filterReviewsByUserProfile} = useContext(ReviewContext);
-    const { getUserProfiles, userProfiles } = useContext(UserProfileContext);
+    const { reviews, getAllReviews, addReview} = useContext(ReviewContext);
     const [reviewInput, setInput] = useState(false)
-    const [searchTerms, setTerms] = useState(null);
     
     const title = useRef('title')
     const content = useRef('content')
@@ -20,7 +14,6 @@ export const ReviewList = () => {
     const category = useRef('category')
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
     const imageLocation = useRef('imageLocation')
-    const history = useHistory()
 
     useEffect(() => {
         getAllReviews();
