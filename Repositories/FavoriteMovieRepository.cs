@@ -53,6 +53,7 @@ namespace PhilipsCapstone.Repositories
                             .Include(c => c.FavoritePost)
                             .ThenInclude(p => p.UserProfile)
                             .Include(c => c.FavoritePost.UserProfile)
+                            .Include(p => p.Review)
                             .Where(c => c.FavoritePostId == id)
                             .OrderByDescending(c => c.FavoritePost.CreateDateTime)
                             .ToList();

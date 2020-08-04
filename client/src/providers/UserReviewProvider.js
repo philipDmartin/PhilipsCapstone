@@ -9,9 +9,9 @@ export const UserReviewProvider = (props) => {
 
     const apiUrl = '/api/review'
 
-    const getAllReviewsByUser = (id) => {
+    const getAllReviewsByUser = () => {
         getToken().then((token) =>
-            fetch(apiUrl + `/getbyuser/${id}`, {
+            fetch(apiUrl + `/getbyuser`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`

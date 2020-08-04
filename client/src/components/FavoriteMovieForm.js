@@ -1,29 +1,29 @@
-import React, { useContext, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useContext, useRef, useEffect, useState, useParams } from 'react'
 import { FavoriteMovieContext } from '../providers/FavoriteMovieProvider';
+import { ReviewContext } from '../providers/ReviewProvider'
 
 export const FavoriteMovieForm = ({ favoritePostId }) => {
     const { addFavoriteMovie } = useContext(FavoriteMovieContext)
 
+    const { reviews, getAllReviewsByUser } = useContext(ReviewContext)
+
     const why = useRef('why')
-    const review = useRef('review')
-    
-    const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
-    const history = useHistory()
+    const reviewId = useRef('reviewId')
 
     const constructNewFavoriteMovie = () => {
-
         const newFavoriteMovieObject = {
             why: why.current.value,
-            review: review.current.value,
-            createDateTime: new Date(),
+            reviewId: parseInt(reviewId.current.value),
             favoritePostId: parseInt(favoritePostId),
-            userProfileId: userProfile.id,
         }
 
         console.log(newFavoriteMovieObject)
         return addFavoriteMovie(newFavoriteMovieObject)
     }
+
+    useEffect(() => {
+        getAllReviewsByUser();
+      }, [])
 
     return (
         <form className='favoriteMovieForm'>
@@ -40,15 +40,29 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                         className='form-control'
                         placeholder='FavoriteMovie why'
                     />
-                     <input Review
-                        type='textarea'
-                        id='favoriteMovieContent'
-                        ref={review}
-                        required
-                        autoFocus
-                        className='form-control'
-                        placeholder='FavoriteMovie review'
-                    />
+                     
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className='form-group'>
+                    <label htmlFor='reviewId'>Assign Review: </label>
+                    <select
+                    defaultValue=''
+                    name='reviewId'
+                    ref={reviewId}
+                    id='reviewId'
+                    className='form-control'
+                    placeholder='reviewId'
+                    required
+                    autoFocus
+                    >
+                    <option value='0'>Select a Review</option>
+                    {reviews.map(r => (
+                        <option key={r.id} value={r.id}>
+                        {r.title}
+                        </option>
+                    ))}
+                    </select>
                 </div>
             </fieldset>
 
@@ -56,7 +70,7 @@ export const FavoriteMovieForm = ({ favoritePostId }) => {
                 type='submit'
                 onClick={evt => {
                     evt.preventDefault() // Prevent browser from submitting the form
-                    constructNewFavoriteMovie().then(p => history.push(`/favoriteMovies/${favoritePostId}`))
+                    constructNewFavoriteMovie()
 
                 }}
                 className='btn btn-primary'

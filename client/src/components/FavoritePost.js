@@ -52,7 +52,7 @@ export const FavoritePost = ({ favoritePost }) => {
                                         }}
                                     className="btn btn-primary">
                                     Cancel
-                                </button>
+                                </button> 
                             </ModalBody>
                         </Modal>
                     </div>

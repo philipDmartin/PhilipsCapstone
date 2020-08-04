@@ -2,31 +2,32 @@ import React, { useContext, useEffect, useState } from "react";
 import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
 import { FavoriteMovie } from "./FavoriteMovie";
 import { useParams, Link } from "react-router-dom";
-import { FavoritePostContext } from "../providers/FavoritePostProvider";
 import { FavoriteMovieForm } from "./FavoriteMovieForm";
 import { Button } from "reactstrap";
 
 export const FavoriteMovieList = () => {
-    const [favoritePost, setFavoritePost] = useState({})
-    const { getFavoritePost } = useContext(FavoritePostContext)
+    const [favList, setFavList] = useState([])
 
-    const { favoriteMovies, getAllFavoriteMoviesByUser } = useContext(FavoriteMovieContext);
+    const {getFavoriteMoviesByFavoritePostId, favoriteMovies} = useContext(FavoriteMovieContext);
 
     const [favoriteMovieInput, setInput] = useState(false)
 
     const { id } = useParams()
 
     useEffect(() => {
-      getAllFavoriteMoviesByUser(id);
-        getFavoritePost(id).then(setFavoritePost)
+      getFavoriteMoviesByFavoritePostId(id);
     }, [])
+
+    useEffect(() => {
+      setFavList(favoriteMovies);
+    }, [favoriteMovies])
 
     const displayInput = () => {
         if (favoriteMovieInput === true) {
           return <FavoriteMovieForm favoritePostId={id} />
         }
       }
-// debugger
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -52,7 +53,7 @@ export const FavoriteMovieList = () => {
                     <h2>FavoriteMovies</h2>
                     <br />
                     {/* <h3 className="favoritePost_favoriteMovie">FavoritePost: {favoritePost.title}</h3> */}
-                    {favoriteMovies.map((favoriteMovie) => (
+                    {favList.map((favoriteMovie) => (
                         <FavoriteMovie key={favoriteMovie.id} favoriteMovie={favoriteMovie} favoritePostId={id} />
                     ))}
                     

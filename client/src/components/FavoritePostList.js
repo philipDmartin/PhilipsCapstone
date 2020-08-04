@@ -9,13 +9,10 @@ import FavoritePostSearch from "./FavoritePostSearch";
 
 export const FavoritePostList = () => {
 
-    const { favoritePosts, getAllFavoritePosts, addFavoritePost, filterfavoritePostsByUserProfile} = useContext(FavoritePostContext);
-    const { getUserProfiles, userProfiles } = useContext(UserProfileContext);
+    const { favoritePosts, getAllFavoritePosts, addFavoritePost} = useContext(FavoritePostContext);
     const [favoritePostInput, setInput] = useState(false)
-    const [searchTerms, setTerms] = useState(null);
     const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
-    const history = useHistory()
     const title = useRef('title')
 
 
