@@ -89,9 +89,9 @@ export function UserProfileProvider(props) {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(userProfile)
-      }))
-    }
+        body: JSON.stringify(userProfile),
+      }).then(getProfile));
+  }
 
   const saveUser = (userProfile) => {
     return getToken().then((token) =>

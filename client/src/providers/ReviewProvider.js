@@ -43,7 +43,6 @@ export const ReviewProvider = (props) => {
             },
             body: JSON.stringify(review),
         }).then(getAllReviews));
-
     }
 
     const deleteReview = (id) => {
