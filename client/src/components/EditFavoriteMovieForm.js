@@ -9,12 +9,11 @@ export const EditFavoriteMovieForm = ({favoriteMovie, toggle, toggleEdit}) => {
   const { updateFavoriteMovie } = useContext(FavoriteMovieContext)
   const { reviews, getAllReviewsByUser } = useContext(ReviewContext)
 
-  const [profileUpdate, setFavoriteMovie] = useState([favoriteMovie]);
+  const [profileUpdate, setFavoriteMovie] = useState(favoriteMovie);
   const history = useHistory();
   
   const why = useRef('why')
   const review = useRef('review')
-  const id = useRef('id')
 
   const handleControlledInputChange = (event) => {
     const newFavoriteMovie = Object.assign({}, profileUpdate);
@@ -22,33 +21,26 @@ export const EditFavoriteMovieForm = ({favoriteMovie, toggle, toggleEdit}) => {
     setFavoriteMovie(newFavoriteMovie);
   };
 
-  //  const editFavoriteMovie = (favoriteMovie) => {
-  //       return updateFavoriteMovie({
-  //           id: parseInt(favoriteMovie.id),
-  //           why: why.current.value,
-  //           review: favoriteMovie.review,
-  //           FavoritePostId: favoriteMovie.FavoritePostId,
-  //           userProfileId: favoriteMovie.favoritePost.userProfile.id,
-  //           createDateTime: favoriteMovie.favoritePost.createDateTime
-  //       }).then(toggleEdit)
-  //   }
-
   const editFavoriteMovie = () => {
-    updateFavoriteMovie(profileUpdate).then(toggle).then(history.push(`/favoriteMovies/${favoriteMovie.id}`));
+    let updatedFavoriteMovie = Object.assign({}, profileUpdate)
+      updatedFavoriteMovie.reviewId = parseInt(updatedFavoriteMovie.reviewId)
+        updateFavoriteMovie(updatedFavoriteMovie).then(toggle).then(history.push(`/favoriteMovies/${favoriteMovie.id}`));
   };
 
   useEffect(() => {
     getAllReviewsByUser();
   }, [])
-//   debugger
+
+  // debugger
   return (
     <>
       <Form className="editFavoriteMovieForm">
         <fieldset>
           <div className="form-group">
-            <label htmlFor="title">
+            <label htmlFor="why">
               Why:
               <input
+                    name="why"
                     type="text"
                     id="why"
                     ref={why}
@@ -65,7 +57,7 @@ export const EditFavoriteMovieForm = ({favoriteMovie, toggle, toggleEdit}) => {
                     <select
                     defaultValue=''
                     onChange={handleControlledInputChange}
-                    name='review'
+                    name='reviewId'
                     ref={review}
                     id='review'
                     className='form-control'
