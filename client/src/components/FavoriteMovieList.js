@@ -27,7 +27,7 @@ export const FavoriteMovieList = () => {
           return <FavoriteMovieForm favoritePostId={id} />
         }
       }
-
+// debugger
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -52,7 +52,6 @@ export const FavoriteMovieList = () => {
                     </Link>
                     <h2>FavoriteMovies</h2>
                     <br />
-                    {/* <h3 className="favoritePost_favoriteMovie">FavoritePost: {favoritePost.title}</h3> */}
                     {favList.map((favoriteMovie) => (
                         <FavoriteMovie key={favoriteMovie.id} favoriteMovie={favoriteMovie} favoritePostId={id} />
                     ))}

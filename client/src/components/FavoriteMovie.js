@@ -1,32 +1,17 @@
 import React, { useState, useContext, useRef, Link } from "react";
 import { Card, CardBody, Button, ModalBody, Modal, ModalHeader, CardImg } from "reactstrap";
 import { FavoriteMovieContext } from "../providers/FavoriteMovieProvider";
-import { ReviewContext } from "../providers/ReviewProvider";
 import { format } from 'date-fns'
+import { EditFavoriteMovieForm } from "./EditFavoriteMovieForm";
 
 export const FavoriteMovie = ({ favoriteMovie }) => {
     const [modal, setModal] = useState(false)
     const toggle = () => setModal(!modal)
 
-    const why = useRef()
-
-    const { deleteFavoriteMovie, updateFavoriteMovie } = useContext(FavoriteMovieContext)
-
-    const { review } = useContext(ReviewContext)
-
     const [editModal, setEditModal] = useState(false)
     const toggleEdit = () => setEditModal(!editModal)
 
-    const favoriteMovieEdit = (favoriteMovie) => {
-        return updateFavoriteMovie({
-            id: parseInt(favoriteMovie.id),
-            why: why.current.value,
-            review: favoriteMovie.review,
-            FavoritePostId: favoriteMovie.FavoritePostId,
-            userProfileId: favoriteMovie.favoritePost.userProfile.id,
-            createDateTime: favoriteMovie.favoritePost.createDateTime
-        }).then(toggleEdit)
-    }
+    const { deleteFavoriteMovie } = useContext(FavoriteMovieContext)
 
     return (
         <Card className="favoriteMovie_card">
@@ -34,58 +19,16 @@ export const FavoriteMovie = ({ favoriteMovie }) => {
                 <CardImg top src={favoriteMovie.review.imageLocation} />
                 <p>Why: {favoriteMovie.why}</p>
                 <p>Title: {favoriteMovie.review.title}</p>
-                <p>Image: {favoriteMovie.review.imageLocation}</p>
                 <p>Stars: {favoriteMovie.review.stars}</p>
                 <p>Category: {favoriteMovie.review.category}</p>
                 <p>Created: {format(new Date(favoriteMovie.review.createDateTime), 'MM/dd/yyyy')}</p>
 
                 <div>
-                    <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button>
+                    <Button color="warning" onClick={toggleEdit}>Edit</Button>
                     <Modal isOpen={editModal} toggle={toggleEdit}>
-                        <ModalHeader toggle={toggleEdit}>
-                            Edit {favoriteMovie.why}</ModalHeader>
-                        <ModalBody >
-                            <div className="form-group"> Why
-                                <input
-                                    type="text"
-                                    id="why"
-                                    ref={why}
-                                    required
-                                    autoFocus
-                                    className="form-control"
-                                    defaultValue={favoriteMovie.why}
-                                />
-                                <br />
-                                <input
-                                    type="text"
-                                    id="review"
-                                    ref={review}
-                                    required
-                                    autoFocus
-                                    className="form-control"
-                                    defaultValue={favoriteMovie.review}
-                                />
-                                <br />
-                                <div className="">
-                                    <button type="submit"
-                                        onClick={
-                                            evt => {
-                                                evt.preventDefault()
-                                                favoriteMovieEdit(favoriteMovie)
-                                            }}
-                                        className="btn btn-success button_margin">
-                                        Save Changes</button>
-                                    <button type="submit"
-                                        onClick={
-                                            evt => {
-                                                evt.preventDefault()
-                                                toggleEdit()
-                                            }}
-                                        className="btn btn-secondary">
-                                        Cancel</button>
-                                </div>
-                            </div>
-                        </ModalBody>
+                            <ModalBody toggle={toggleEdit}>
+                                <EditFavoriteMovieForm favoriteMovie={favoriteMovie} toggle={toggleEdit} />
+                            </ModalBody>
                     </Modal>
 
                     <Button color="danger" onClick={toggle}>Delete</Button>
