@@ -3,11 +3,11 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import { Button, Form } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
+//passsed from parent component
 export const EditProfileForm = (props) => {
   const { updateProfile, getProfile } = useContext(UserProfileContext);
   const [profileUpdate, setProfile] = useState(props.userProfile);
   const history = useHistory();
-
 
   const handleControlledInputChange = (event) => {
     const newProfile = Object.assign({}, profileUpdate);
