@@ -76,7 +76,7 @@ GO
 ALTER TABLE [Review] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 GO
 
-ALTER TABLE [Comment] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id])
+ALTER TABLE [Comment] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id]) ON DELETE CASCADE
 GO
 
 ALTER TABLE [Comment] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
@@ -85,8 +85,8 @@ GO
 ALTER TABLE [FavoritePost] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
 GO
 
-ALTER TABLE [FavoriteMovies] ADD FOREIGN KEY ([FavoritePostId]) REFERENCES [FavoritePost] ([Id])
+ALTER TABLE [FavoriteMovie] ADD FOREIGN KEY ([FavoritePostId]) REFERENCES [FavoritePost] ([Id])
 GO
 
-ALTER TABLE [FavoriteMovie] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id])
+ALTER TABLE [FavoriteMovie] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id]) ON DELETE CASCADE
 GO
