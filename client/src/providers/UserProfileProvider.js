@@ -90,7 +90,7 @@ export function UserProfileProvider(props) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(userProfile),
-      }).then(getProfile));
+      }))
   }
 
   const saveUser = (userProfile) => {
