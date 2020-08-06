@@ -26,10 +26,10 @@ export const Comment = ({ comment, reviewId }) => {
 
     return (
         <Card className="comment_card">
-            <p className="text-left px-2">Commented by: {comment.userProfile.displayName}</p>
+            <p className="text-left px-2">by: {comment.userProfile.displayName}</p>
             <CardBody>
-                <p>Content: {comment.content}</p>
-                <p>Comment Date: {format(new Date(comment.createDateTime), 'MM/dd/yyyy')}</p>
+                <p className="commentContent">{comment.content}</p>
+                <p className="commentDate">{format(new Date(comment.createDateTime), 'MM/dd/yyyy')}</p>
 
                 <div>
                     <Button className="button_margin" color="warning" onClick={toggleEdit}>Edit</Button>

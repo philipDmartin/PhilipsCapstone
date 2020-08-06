@@ -1,0 +1,94 @@
+.review {
+    background-color: rgba(0, 0, 0, 0.788);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: solid thin white;
+    border-radius: 10px;
+    /* width: 40%; */
+}
+
+.reviewDetails {
+    background-color: rgba(0, 0, 0, 0.788);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: solid thin white;
+    border-radius: 10px;
+}
+
+.commentBtns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+.commentForm {
+    color: black;
+}
+
+.addCommentBtn {
+    max-width: 15rem;
+}
+
+.viewCommentBtn {
+    max-width: 15rem;
+}
+
+.reviewTitle {
+    text-align: center;
+    color: black;
+}
+
+.reviewItems {
+    color: black;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.content {
+    font-size: x-large;
+    text-align: center;
+    padding: 25px;
+}
+
+/* User Post Styles */
+.userReview {
+    background-color: rgba(0, 0, 0, 0.788);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: solid thin white;
+    border-radius: 10px;
+}
+
+.userReviewTitle {
+    text-align: center;
+    color: white;
+}
+
+.userReviewItems {
+    color: black;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.userReviewBtns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}

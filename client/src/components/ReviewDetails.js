@@ -48,9 +48,11 @@ const [review, setReview] = useState()
               <h3>{review.title}</h3>
             </div>
 
+            <div className="content">
+              {review.content} <br />
+            </div>
+
             <div className="reviewItems">
-              Content: <br />
-              {review.content} <br /><br />
               <div>
                 Reviewed by: <br />
                 {review.userProfile.displayName} <br />
@@ -61,7 +63,7 @@ const [review, setReview] = useState()
               </div>
               <div>
                 Category: <br />
-                {review.category} <br /><br />
+                {review.category} <br />
               </div>
               <div>
                 Date Published: <br />
