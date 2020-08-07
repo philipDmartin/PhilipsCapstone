@@ -1,6 +1,39 @@
 # Moo-V(Back-end Capstone)
+I created this app for movie reviewers to to share
+there opinions on there favorite films and react to
+other users reviews, this is a comfortable place for
+avid film reviewers to share and comment on each
+others reviews.
+Full CRUD, full stack, user specific app built in React
+and C# to help film reviewers put out there content
+and communicate with other reviewers.
 
-This project was bootstrapped with Create React App.
+-Technologies Used
+
+C#
+ASP.NET Web API & Entity Framework for accessing the database
+SQL Server for database management
+React using "hooks" for client-side application build
+React Router for navigation
+Bootstrap/reactstrap
+
+-App Setup: Follow these steps exactly
+Must have node.js, Visual Studio and SQL Server installed on local machine
+
+Clone this repository onto your local machine.
+From the terminal, cd into the directory that this project creates.
+Run Visual Studio
+Set up the SQL API: SQL Create and Seed Data are inside the SQL folder
+install npm
+Start Application through Visual Studio
+In the terminal, cd into the client sub-directory and run npm start
+to view the app in the browser at http://localhost:3000.
+When the app is setup successfully, you will see the FoodLocker login page in the browser.
+
+-Navigating the App
+First click on the Sign Up button to register your first account
+Enter your information then click the Register button - this will log you into Moo-V
+Explore our features:
 
 Available Scripts
 In the project directory, you can run:
