@@ -39,7 +39,7 @@ export const FavoriteMovieList = () => {
                   setInput(true)
                 }
               }
-              className="addFavoriteMovieBtn">
+              className="btn btn-primary2">
               Add FavoriteMovie
             </Button>   
           <div>

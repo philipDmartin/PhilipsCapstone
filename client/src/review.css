@@ -1,21 +1,42 @@
-.review {
-    background-color: rgba(0, 0, 0, 0.788);
+.review.card {
+    /* background-color: rgba(74, 77, 76, 0.952); */
     margin-top: 1rem;
     margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 5%;
     border: solid thin white;
     border-radius: 10px;
-    /* width: 40%; */
+}
+
+.search {
+    width: 45%;
+    margin-left: 25%;
 }
 
 .reviewDetails {
-    background-color: rgba(0, 0, 0, 0.788);
+    background-color: rgba(74, 77, 76, 0.952);
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
     border: solid thin white;
     border-radius: 10px;
 }
+
+.itemBorder {
+    background-color: rgb(68, 101, 192);
+    border-radius: 5%;
+    color: rgb(236, 233, 227);
+    width: 200px;
+    text-align: center;
+}
+
+/* .itemBorder2 {
+    background-color: rgb(68, 101, 192);
+    border-radius: 5%;
+    color: rgb(236, 233, 227);
+    width: 200px;
+    padding: 30;
+    text-align: center;
+} */
 
 .commentBtns {
     display: flex;
@@ -28,6 +49,30 @@
 
 .commentForm {
     color: black;
+}
+
+.btn-primary2 {
+    height: 40px;
+}
+
+#title.form-control {
+    width: 800px;
+}
+
+#content.form-control {
+    width: 800px;
+}
+
+#stars.form-control {
+    width: 800px;
+}
+
+#category.form-control {
+    width: 800px;
+}
+
+#imageLocation.form-control {
+    width: 800px;
 }
 
 .addCommentBtn {
@@ -43,6 +88,11 @@
     color: black;
 }
 
+.favoritePostTitle {
+    text-align: center;
+    color: black;
+}
+
 .reviewItems {
     color: black;
     margin-bottom: 1rem;
@@ -53,10 +103,30 @@
     font-size: large;
 }
 
+.favoritePostItems {
+    color: black;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    font-size: large;
+    padding: 5%;
+}
+
 .content {
     font-size: x-large;
     text-align: center;
     padding: 25px;
+}
+
+.favoritePostBtns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 
 /* User Post Styles */

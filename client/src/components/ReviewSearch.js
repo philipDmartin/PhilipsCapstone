@@ -9,7 +9,7 @@ const ReviewSearch = () => {
   }
 
   return (
-    <Form>
+    <Form className="search">
       <Input placeholder='Search...' onChange={Search} />
     </Form>
   )

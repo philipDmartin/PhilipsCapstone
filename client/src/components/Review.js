@@ -14,9 +14,9 @@ export const Review = ({ review }) => {
                     </Link>
                 </div>
                 <div className="reviewItems">
-                    <p>Reviewed by: {review.userProfile.displayName}</p>
-                    <p>Category: {review.category}</p>
-                    <p>Stars: {review.stars}</p>
+                    <p className="itemBorder">Reviewed by: {review.userProfile.displayName}</p>
+                    <p className="itemBorder">Category: {review.category}</p>
+                    <p className="itemBorder">Stars: {review.stars}</p>
                     {/* <p>Created: {format(new Date(review.createDateTime), 'MM/dd/yyyy')}</p> */}
                 </div>
             </CardBody>
