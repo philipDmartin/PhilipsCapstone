@@ -111,7 +111,7 @@ export const ReviewList = () => {
             <div className="addReviewStyle">
                 {displayInput()}
             </div>
-                <div className="cards-column">
+                <div className="cards-column, FreviewormCard">
                     <ReviewSearch/>
                     {reviews.map((review) => (
                         <Review key={review.id} review={review} />

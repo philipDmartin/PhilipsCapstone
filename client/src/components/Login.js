@@ -18,13 +18,13 @@ export default function Login() {
   };
 
   return (
-    <Form onSubmit={loginSubmit}>
+    <Form onSubmit={loginSubmit} className="login">
       <fieldset>
-        <FormGroup>
+        <FormGroup className="nameLogin">
           <Label for="email">Email</Label>
           <Input id="email" type="text" onChange={e => setEmail(e.target.value)} />
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="nameLogin">
           <Label for="password">Password</Label>
           <Input id="password" type="password" onChange={e => setPassword(e.target.value)} />
         </FormGroup>

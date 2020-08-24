@@ -48,23 +48,25 @@ const [review, setReview] = useState()
               <h3>{review.title}</h3>
             </div>
 
+            <div className="content">
+              {review.content} <br />
+            </div>
+
             <div className="reviewItems">
-              Content: <br />
-              {review.content} <br /><br />
-              <div>
-                Reviewed by: <br />
+              <div className="itemBorder2">
+                by: <br />
                 {review.userProfile.displayName} <br />
               </div>
-              <div>
+              <div className="itemBorder2">
                 Stars: <br />
                 {review.stars} <br />
               </div>
-              <div>
-                Category: <br />
-                {review.category} <br /><br />
+              <div className="itemBorder2">
+              Category: <br />
+                {review.category} <br />
               </div>
-              <div>
-                Date Published: <br />
+              <div className="itemBorder2">
+                 <br />
                 {format(new Date(review.createDateTime), 'MM/dd/yyyy')} <br /><br />
               </div>
             </div>

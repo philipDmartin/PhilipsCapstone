@@ -30,10 +30,10 @@ export const UserReview = ({ review }) => {
                         Reviewed by: <br />
                         {review.userProfile.displayName} <br />
                     </div>
-                    <div>
+                    {/* <div>
                         Date Created: <br />
                         {format(new Date(review.createDateTime), 'MM/dd/yyyy')} <br /><br />
-                    </div>
+                    </div> */}
                     <div>
                         Stars: <br />
                         {review.stars} <br />

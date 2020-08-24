@@ -25,8 +25,8 @@ export const FavoritePost = ({ favoritePost }) => {
                     </Link>
                 </div>
                 <div className="favoritePostItems">
-                    <p>by: {favoritePost.userProfile.displayName}</p>
-                    <p>Created: {format(new Date(favoritePost.createDateTime), 'MM/dd/yyyy')}</p>
+                    <p className="itemBorder">by: {favoritePost.userProfile.displayName}</p>
+                    <p className="itemBorder">Created: {format(new Date(favoritePost.createDateTime), 'MM/dd/yyyy')}</p>
                 </div>
                 <div className="favoritePostBtns">
                     <div><Button color="danger" onClick={toggle}>Delete</Button>
