@@ -42,6 +42,7 @@ CREATE TABLE [UserProfile] (
   [UserTypeId] integer
 
     CONSTRAINT UQ_FirebaseUserId UNIQUE(FirebaseUserId)
+
 )
 GO
 
@@ -74,18 +75,23 @@ ALTER TABLE [UserProfile] ADD FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] (
 GO
 
 ALTER TABLE [Review] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [Comment] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [Comment] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [FavoritePost] ADD FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfile] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [FavoriteMovies] ADD FOREIGN KEY ([FavoritePostId]) REFERENCES [FavoritePost] ([Id])
+ON DELETE CASCADE
 GO
 
 ALTER TABLE [FavoriteMovie] ADD FOREIGN KEY ([ReviewId]) REFERENCES [Review] ([Id])
